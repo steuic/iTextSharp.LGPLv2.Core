@@ -1,4 +1,4 @@
-using iTextSharp.text.pdf.crypto;
+﻿using iTextSharp.text.pdf.crypto;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.Cms;
 using Org.BouncyCastle.Asn1.Pkcs;
@@ -100,7 +100,8 @@ public class PdfPublicKeySecurityHandler
         using var memoryStream = new MemoryStream(x509Certificate.GetTbsCertificate());
         using var asn1Inputstream = new Asn1InputStream(memoryStream);
         var tbscertificatestructure = TbsCertificateStructure.GetInstance(asn1Inputstream.ReadObject());
-        var algorithmidentifier = tbscertificatestructure.SubjectPublicKeyInfo.Algorithm;
+        //var algorithmidentifier = tbscertificatestructure.SubjectPublicKeyInfo.Algorithm;
+        var algorithmidentifier = tbscertificatestructure.SubjectPublicKeyInfo.AlgorithmID;
 
         var issuerandserialnumber =
             new IssuerAndSerialNumber(tbscertificatestructure.Issuer, tbscertificatestructure.SerialNumber.Value);

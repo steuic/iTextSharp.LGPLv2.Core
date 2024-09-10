@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using System.util;
 using iTextSharp.LGPLv2.Core.System.Encodings;
@@ -1187,7 +1187,8 @@ public class PdfPkcs7
             var isscer = cs[1];
 
             var tis = new CertificateID(
-                new AlgorithmIdentifier(new DerObjectIdentifier(OiwObjectIdentifiers.IdSha1.Id), DerNull.Instance),
+                //new AlgorithmIdentifier(new DerObjectIdentifier(OiwObjectIdentifiers.IdSha1.Id), DerNull.Instance),
+                OiwObjectIdentifiers.IdSha1.Id,
                 isscer, sigcer.SerialNumber);
 
             return tis.Equals(cid);

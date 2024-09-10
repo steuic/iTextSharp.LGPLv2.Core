@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Asn1.Oiw;
@@ -125,8 +125,10 @@ public class OcspClientBouncyCastle : IOcspClient
     {
         // Generate the id for the certificate we are looking for
         var id = new CertificateID(
-            new AlgorithmIdentifier(new DerObjectIdentifier(OiwObjectIdentifiers.IdSha1.Id), DerNull.Instance),
-            issuerCert, serialNumber);
+            //new AlgorithmIdentifier(new DerObjectIdentifier(OiwObjectIdentifiers.IdSha1.Id), DerNull.Instance),
+            OiwObjectIdentifiers.IdSha1.Id,
+            issuerCert, 
+            serialNumber);
 
         // basic request generation with nonce
         var gen = new OcspReqGenerator();
